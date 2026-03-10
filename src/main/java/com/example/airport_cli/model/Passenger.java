@@ -43,4 +43,8 @@ public class Passenger {
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Passenger ID: " + getId() + "Name: " + getFirstName() + getLastName() + "Phone Number: " + getPhoneNumber();
+    }
 }
