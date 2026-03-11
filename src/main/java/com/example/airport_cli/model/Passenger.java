@@ -45,6 +45,8 @@ public class Passenger {
 
     @Override
     public String toString() {
-        return "Passenger ID: " + getId() + "Name: " + getFirstName() + getLastName() + "Phone Number: " + getPhoneNumber();
+        return "Passenger ID: " + getId() +
+                "\nName: " + getFirstName() + getLastName() +
+                "\nPhone Number: " + getPhoneNumber();
     }
 }
