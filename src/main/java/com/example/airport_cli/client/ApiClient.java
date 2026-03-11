@@ -75,7 +75,17 @@ public class ApiClient {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
         return objectMapper.readValue(response.body(), new TypeReference<List<Airport>>() {});
+    }
+
+    // aircraft
+    public List<Aircraft> getAirportsByAircraft(Long aircraftId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/aircraft" + aircraftId + "/airports"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), new TypeReference<List<Aircraft>>() {});
     }
 }
