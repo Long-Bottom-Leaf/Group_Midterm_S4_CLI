@@ -27,5 +27,55 @@ public class ApiClient {
     }
 
     // cities
+    public List<City> getAllCities() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(BASE_URL + "/cities"))
+            .GET()
+            .build();
 
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), new TypeReference<List<City>>() {});
+    }
+
+    public List<Airport> getAirportsByCity(long cityId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/cities" + cityId + "/airports"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), new TypeReference<List<Airport>>() {});
+    }
+
+    // passengers
+    public List<Passenger> getAllPassengers() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/passengers"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), new TypeReference<List<Passenger>>() {});
+    }
+
+    public List<Aircraft> getAircraftByPassenger(Long passengerId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/passengers/" + passengerId + "/aircraft"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), new TypeReference<List<Aircraft>>() {});
+    }
+
+    public List<Airport> getAirportsByPassenger(Long passengerId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/passengers/" + passengerId + "/airports"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return objectMapper.readValue(response.body(), new TypeReference<List<Airport>>() {});
+    }
 }
