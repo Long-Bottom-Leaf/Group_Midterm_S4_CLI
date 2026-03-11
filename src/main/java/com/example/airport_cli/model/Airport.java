@@ -11,6 +11,8 @@ public class Airport {
     private City city;
     private List<Aircraft> aircraft;
 
+    public Airport() {}
+
     /* Getters and Setters */
     public Long getId() {
         return id;
