@@ -39,7 +39,7 @@ public class ApiClient {
 
     public List<Airport> getAirportsByCity(long cityId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/cities" + cityId + "/airports"))
+                .uri(URI.create(BASE_URL + "/cities/" + cityId + "/airports"))
                 .GET()
                 .build();
 
@@ -79,13 +79,13 @@ public class ApiClient {
     }
 
     // aircraft
-    public List<Aircraft> getAirportsByAircraft(Long aircraftId) throws IOException, InterruptedException {
+    public List<Airport> getAirportsByAircraft(Long aircraftId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/aircraft" + aircraftId + "/airports"))
+                .uri(URI.create(BASE_URL + "/aircraft/" + aircraftId + "/airports"))
                 .GET()
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        return objectMapper.readValue(response.body(), new TypeReference<List<Aircraft>>() {});
+        return objectMapper.readValue(response.body(), new TypeReference<List<Airport>>() {});
     }
 }
