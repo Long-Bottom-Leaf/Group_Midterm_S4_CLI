@@ -1,7 +1,6 @@
 package com.example.airport_cli.cli;
 
 import com.example.airport_cli.model.*;
-import com.example.airport_cli.client.*;
 import com.example.airport_cli.service.AircraftService;
 import com.example.airport_cli.service.CityService;
 import com.example.airport_cli.service.PassengerService;
@@ -31,6 +30,32 @@ public class Menu {
             printMenu();
 
             int choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    listCities();
+                    break;
+
+                case 2:
+                    airportsByCity();
+                    break;
+
+                case 3:
+                    aircraftsByPassenger();
+                    break;
+
+                case 4:
+                    airportsByPassenger();
+                    break;
+
+                case 5:
+                    airportsByAircraft();
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
         }
     }
 
@@ -67,10 +92,60 @@ public class Menu {
         List<Airport> airports = cityService.getAirportsByCity(cityId);
 
         if (airports != null) {
-            System.out.println(airports);
+            for (Airport airport : airports) {
+                System.out.println(airports);
+            }
 
         } else {
             System.out.println("No airports were found.");
+        }
+    }
+
+    private void aircraftsByPassenger() {
+        System.out.println("Enter passenger ID: ");
+        Long passengerId = scanner.nextLong();
+
+        List<Aircraft> aircrafts = passengerService.getAircraftByPassenger(passengerId);
+
+        if (aircrafts != null) {
+            for (Aircraft aircraft1 : aircrafts) {
+                System.out.println(aircrafts);
+            }
+
+        } else {
+            System.out.println("No aircraft found.");
+        }
+    }
+
+    private void airportsByPassenger() {
+        System.out.println("Enter passenger ID: ");
+        Long passengerId = scanner.nextLong();
+
+        List<Airport> airports = passengerService.getAirportsByPassenger(passengerId);
+
+        if (airports != null) {
+            for (Airport airport : airports) {
+                System.out.println(airports);
+            }
+
+        } else {
+            System.out.println("No airports found.");
+        }
+    }
+
+    private void airportsByAircraft() {
+        System.out.println("Enter aircraft ID: ");
+        Long aircraftId = scanner.nextLong();
+
+        List<Airport> airports = aircraftService.getAirportsByAircraft(aircraftId);
+
+        if (airports != null) {
+            for (Airport airport : airports) {
+                System.out.println(airports);
+            }
+
+        } else {
+            System.out.println("No airports found.");
         }
     }
 }
