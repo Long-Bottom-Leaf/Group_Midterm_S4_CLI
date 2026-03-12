@@ -19,7 +19,7 @@ public class CityService {
         try {
             return apiClient.getAllCities();
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving cities.");
 
             return null;
@@ -30,7 +30,7 @@ public class CityService {
         try {
             return apiClient.getAirportsByCity(cityId);
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving airports.");
 
             return null;

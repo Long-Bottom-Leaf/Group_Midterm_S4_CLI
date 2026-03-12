@@ -19,7 +19,8 @@ public class PassengerService {
     public List<Passenger> getAllPassengers() {
         try {
             return apiClient.getAllPassengers();
-        } catch (IOException | InterruptedException e) {
+
+        } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving passengers.");
             return null;
         }
@@ -28,7 +29,8 @@ public class PassengerService {
     public List<Aircraft> getAircraftByPassenger(Long passengerId) {
         try {
             return apiClient.getAircraftByPassenger(passengerId);
-        } catch (IOException | InterruptedException e) {
+
+        } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving aircraft.");
             return null;
         }
@@ -37,6 +39,7 @@ public class PassengerService {
     public List<Airport> getAirportsByPassenger(Long passengerId) {
         try {
             return apiClient.getAirportsByPassenger(passengerId);
+
         } catch (IOException | InterruptedException e) {
             System.out.println("Error retrieving airports.");
             return null;
