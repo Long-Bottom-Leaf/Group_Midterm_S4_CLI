@@ -15,9 +15,8 @@ public class Menu {
     private CityService cityService;
     private PassengerService passengerService;
 
-    public void menu() {
+    public Menu() {
         scanner = new Scanner(System.in);
-
         aircraftService = new AircraftService();
         cityService = new CityService();
         passengerService = new PassengerService();
@@ -29,7 +28,16 @@ public class Menu {
         while (running) {
             printMenu();
 
-            int choice = scanner.nextInt();
+            int choice;
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
+                continue;
+            }
 
             switch (choice) {
 
@@ -42,7 +50,7 @@ public class Menu {
                     break;
 
                 case 3:
-                    aircraftsByPassenger();
+                    aircraftByPassenger();
                     break;
 
                 case 4:
@@ -51,6 +59,11 @@ public class Menu {
 
                 case 5:
                     airportsByAircraft();
+                    break;
+
+                case 6:
+                    running = false;
+                    System.out.println("Goodbye!");
                     break;
 
                 default:
@@ -86,14 +99,14 @@ public class Menu {
     }
 
     private void airportsByCity() {
-        System.out.println("Enter city ID: ");
+        System.out.print("Enter city ID: ");
         Long cityId = scanner.nextLong();
 
         List<Airport> airports = cityService.getAirportsByCity(cityId);
 
         if (airports != null) {
             for (Airport airport : airports) {
-                System.out.println(airports);
+                System.out.println(airport);
             }
 
         } else {
@@ -101,15 +114,15 @@ public class Menu {
         }
     }
 
-    private void aircraftsByPassenger() {
-        System.out.println("Enter passenger ID: ");
+    private void aircraftByPassenger() {
+        System.out.print("Enter passenger ID: ");
         Long passengerId = scanner.nextLong();
 
-        List<Aircraft> aircrafts = passengerService.getAircraftByPassenger(passengerId);
+        List<Aircraft> aircraft = passengerService.getAircraftByPassenger(passengerId);
 
-        if (aircrafts != null) {
-            for (Aircraft aircraft1 : aircrafts) {
-                System.out.println(aircrafts);
+        if (aircraft != null) {
+            for (Aircraft aircraft1 : aircraft) {
+                System.out.println(aircraft1);
             }
 
         } else {
@@ -118,14 +131,14 @@ public class Menu {
     }
 
     private void airportsByPassenger() {
-        System.out.println("Enter passenger ID: ");
+        System.out.print("Enter passenger ID: ");
         Long passengerId = scanner.nextLong();
 
         List<Airport> airports = passengerService.getAirportsByPassenger(passengerId);
 
         if (airports != null) {
             for (Airport airport : airports) {
-                System.out.println(airports);
+                System.out.println(airport);
             }
 
         } else {
@@ -134,14 +147,14 @@ public class Menu {
     }
 
     private void airportsByAircraft() {
-        System.out.println("Enter aircraft ID: ");
+        System.out.print("Enter aircraft ID: ");
         Long aircraftId = scanner.nextLong();
 
         List<Airport> airports = aircraftService.getAirportsByAircraft(aircraftId);
 
         if (airports != null) {
             for (Airport airport : airports) {
-                System.out.println(airports);
+                System.out.println(airport);
             }
 
         } else {
