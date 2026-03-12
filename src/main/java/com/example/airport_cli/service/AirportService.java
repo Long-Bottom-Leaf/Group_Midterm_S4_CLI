@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AirportService {
 
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
     public AirportService() {
         this.apiClient = new ApiClient();
@@ -29,7 +29,7 @@ public class AirportService {
             return apiClient.getAirportsByPassenger(passengerId);
 
         } catch (IOException | InterruptedException error) {
-            System.out.println("Error retrieving passengers.");
+            System.out.println("Error retrieving airports.");
             return null;
         }
     }

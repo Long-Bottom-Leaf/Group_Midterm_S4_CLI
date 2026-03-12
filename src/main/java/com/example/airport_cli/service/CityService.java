@@ -9,9 +9,9 @@ import java.util.List;
 
 public class CityService {
 
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
-    private CityService() {
+    public CityService() {
         this.apiClient = new ApiClient();
     }
 

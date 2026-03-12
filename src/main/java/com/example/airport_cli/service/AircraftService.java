@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AircraftService {
 
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
     public AircraftService() {
         this.apiClient = new ApiClient();

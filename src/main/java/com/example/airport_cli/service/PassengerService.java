@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PassengerService {
 
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
     public PassengerService() {
         this.apiClient = new ApiClient();
