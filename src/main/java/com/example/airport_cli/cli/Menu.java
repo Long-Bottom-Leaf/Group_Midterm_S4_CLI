@@ -85,10 +85,26 @@ public class Menu {
         System.out.print("Select option: ");
     }
 
+    private Long readLong(String message) {
+
+        while (true) {
+
+            System.out.print(message);
+
+            if (scanner.hasNextLong()) {
+                return scanner.nextLong();
+
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
+            }
+        }
+    }
+
     private void listCities() {
         List<City> cities = cityService.getAllCities();
 
-        if (cities != null) {
+        if (cities != null && !cities.isEmpty()) {
             for (City city : cities) {
                 System.out.println(city);
             }
@@ -99,12 +115,11 @@ public class Menu {
     }
 
     private void airportsByCity() {
-        System.out.print("Enter city ID: ");
-        Long cityId = scanner.nextLong();
+        Long cityId = readLong("Enter city ID: ");
 
         List<Airport> airports = cityService.getAirportsByCity(cityId);
 
-        if (airports != null) {
+        if (airports != null && !airports.isEmpty()) {
             for (Airport airport : airports) {
                 System.out.println(airport);
             }
@@ -115,12 +130,11 @@ public class Menu {
     }
 
     private void aircraftByPassenger() {
-        System.out.print("Enter passenger ID: ");
-        Long passengerId = scanner.nextLong();
+        Long passengerId = readLong("Enter passenger ID: ");
 
         List<Aircraft> aircraft = passengerService.getAircraftByPassenger(passengerId);
 
-        if (aircraft != null) {
+        if (aircraft != null && !aircraft.isEmpty()) {
             for (Aircraft aircraft1 : aircraft) {
                 System.out.println(aircraft1);
             }
@@ -131,12 +145,11 @@ public class Menu {
     }
 
     private void airportsByPassenger() {
-        System.out.print("Enter passenger ID: ");
-        Long passengerId = scanner.nextLong();
+        Long passengerId = readLong("Enter passenger ID: ");
 
         List<Airport> airports = passengerService.getAirportsByPassenger(passengerId);
 
-        if (airports != null) {
+        if (airports != null && !airports.isEmpty()) {
             for (Airport airport : airports) {
                 System.out.println(airport);
             }
@@ -147,12 +160,11 @@ public class Menu {
     }
 
     private void airportsByAircraft() {
-        System.out.print("Enter aircraft ID: ");
-        Long aircraftId = scanner.nextLong();
+        Long aircraftId = readLong("Enter aircraft ID: ");
 
         List<Airport> airports = aircraftService.getAirportsByAircraft(aircraftId);
 
-        if (airports != null) {
+        if (airports != null && !airports.isEmpty()) {
             for (Airport airport : airports) {
                 System.out.println(airport);
             }
