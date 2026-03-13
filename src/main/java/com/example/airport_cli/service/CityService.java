@@ -12,7 +12,7 @@ public class CityService {
     private final ApiClient apiClient;
 
     public CityService(ApiClient apiClient) {
-        this.apiClient = new ApiClient();
+        this.apiClient = apiClient;
     }
 
     public List<City> getAllCities() {

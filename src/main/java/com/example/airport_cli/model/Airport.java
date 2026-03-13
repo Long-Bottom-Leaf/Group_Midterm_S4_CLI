@@ -1,17 +1,25 @@
 package com.example.airport_cli.model;
 
+import com.example.airport_cli.model.City;
+
 import java.util.List;
 
 public class Airport {
 
     private Long id;
-
     private String name;
     private String code;
     private City city;
     private List<Aircraft> aircraft;
 
     public Airport() {}
+
+    public Airport(Long id, String name, String code, City city) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.city = city;
+    }
 
     /* Getters and Setters */
     public Long getId() {

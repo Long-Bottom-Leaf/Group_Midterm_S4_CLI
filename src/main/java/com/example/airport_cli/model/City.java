@@ -14,10 +14,11 @@ public class City {
     // empty constructor for json objects
     public City() {}
 
-    public City(String name, String province) {
+    public City(Long id, String name, String province, int population) {
+        this.id = id;
         this.name = name;
         this.province = province;
-        this.population = 0;
+        this.population = population;
     }
 
     // getters and setters
