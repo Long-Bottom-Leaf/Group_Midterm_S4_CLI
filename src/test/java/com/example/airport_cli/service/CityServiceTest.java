@@ -34,16 +34,26 @@ public class CityServiceTest {
 
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals("Toronto", result.getFirst().getName());
-        assertEquals(110000, result.getFirst().getPopulation());
+        assertEquals("St. John's", result.get(0).getName());
+        assertEquals(110000, result.get(0).getPopulation());
 
         verify(apiClient).getAllCities();
     }
 
     @Test
     void testGetAirportsByCity() throws Exception {
+        City city = new City(1L, "Toronto", "Ontario", 3000000);
+        Airport airport = new Airport(1L, "YYZ International", "YYZ", city);
 
-        Airport airport = new Airport();
+        when(apiClient.getAirportsByCity(1L)).thenReturn(List.of(airport));
 
+        List<Airport> result = cityService.getAirportsByCity(1L);
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("YYZ International", result.get(0).getName());
+        assertEquals("Toronto", result.get(0).getCity().getName());
+
+        verify(apiClient).getAirportsByCity(1L);
     }
 }
