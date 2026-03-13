@@ -11,7 +11,7 @@ public class CityService {
 
     private final ApiClient apiClient;
 
-    public CityService() {
+    public CityService(ApiClient apiClient) {
         this.apiClient = new ApiClient();
     }
 

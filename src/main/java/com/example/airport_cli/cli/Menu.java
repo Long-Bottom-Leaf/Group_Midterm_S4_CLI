@@ -1,5 +1,6 @@
 package com.example.airport_cli.cli;
 
+import com.example.airport_cli.client.ApiClient;
 import com.example.airport_cli.model.*;
 import com.example.airport_cli.service.AircraftService;
 import com.example.airport_cli.service.CityService;
@@ -17,9 +18,12 @@ public class Menu {
 
     public Menu() {
         scanner = new Scanner(System.in);
-        aircraftService = new AircraftService();
-        cityService = new CityService();
-        passengerService = new PassengerService();
+
+        ApiClient apiClient = new ApiClient();
+
+        aircraftService = new AircraftService(apiClient);
+        cityService = new CityService(apiClient);
+        passengerService = new PassengerService(apiClient);
     }
 
     public void start() {

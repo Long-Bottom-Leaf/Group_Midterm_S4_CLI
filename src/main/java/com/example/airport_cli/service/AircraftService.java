@@ -10,7 +10,7 @@ public class AircraftService {
 
     private final ApiClient apiClient;
 
-    public AircraftService() {
+    public AircraftService(ApiClient apiClient) {
         this.apiClient = new ApiClient();
     }
 

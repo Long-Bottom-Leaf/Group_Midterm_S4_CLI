@@ -12,7 +12,7 @@ public class PassengerService {
 
     private final ApiClient apiClient;
 
-    public PassengerService() {
+    public PassengerService(ApiClient apiClient) {
         this.apiClient = new ApiClient();
     }
 

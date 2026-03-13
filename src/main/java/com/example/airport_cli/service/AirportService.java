@@ -10,7 +10,7 @@ public class AirportService {
 
     private final ApiClient apiClient;
 
-    public AirportService() {
+    public AirportService(ApiClient apiClient) {
         this.apiClient = new ApiClient();
     }
 
