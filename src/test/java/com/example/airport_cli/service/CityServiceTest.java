@@ -26,8 +26,8 @@ public class CityServiceTest {
 
     @Test
     void testAllCities() throws Exception {
-        City city = new City(2L, "St. John's", "Newfoundland", 110000);
 
+        City city = new City(2L, "St. John's", "Newfoundland", 110000);
         when(apiClient.getAllCities()).thenReturn(List.of(city));
 
         List<City> result = cityService.getAllCities();
@@ -42,9 +42,9 @@ public class CityServiceTest {
 
     @Test
     void testGetAirportsByCity() throws Exception {
+
         City city = new City(1L, "Toronto", "Ontario", 3000000);
         Airport airport = new Airport(1L, "YYZ International", "YYZ", city);
-
         when(apiClient.getAirportsByCity(1L)).thenReturn(List.of(airport));
 
         List<Airport> result = cityService.getAirportsByCity(1L);
