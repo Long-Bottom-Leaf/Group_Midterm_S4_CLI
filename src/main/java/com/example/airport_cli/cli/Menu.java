@@ -115,7 +115,7 @@ public class Menu {
     }
 
     private void airportsByCity() {
-        Long cityId = readLong("Enter city ID.");
+        Long cityId = readLong("Enter city ID: ");
 
         List<Airport> airports = cityService.getAirportsByCity(cityId);
 
