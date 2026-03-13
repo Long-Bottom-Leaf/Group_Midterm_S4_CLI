@@ -85,6 +85,22 @@ public class Menu {
         System.out.print("Select option: ");
     }
 
+    private Long readLong(String message) {
+
+        while (true) {
+
+            System.out.print(message);
+
+            if (scanner.hasNextLong()) {
+                return scanner.nextLong();
+
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next();
+            }
+        }
+    }
+
     private void listCities() {
         List<City> cities = cityService.getAllCities();
 
@@ -99,17 +115,7 @@ public class Menu {
     }
 
     private void airportsByCity() {
-        System.out.print("Enter city ID: ");
-        Long cityId;
-
-        if (scanner.hasNextLong()) {
-            cityId = scanner.nextLong();
-
-        } else {
-            System.out.println("Invalid ID.");
-            scanner.next();
-            return;
-        }
+        Long cityId = readLong("Enter city ID.");
 
         List<Airport> airports = cityService.getAirportsByCity(cityId);
 
@@ -124,17 +130,7 @@ public class Menu {
     }
 
     private void aircraftByPassenger() {
-        System.out.print("Enter passenger ID: ");
-        Long passengerId;
-
-        if (scanner.hasNextLong()) {
-            passengerId = scanner.nextLong();
-
-        } else {
-            System.out.println("Invalid ID.");
-            scanner.next();
-            return;
-        }
+        Long passengerId = readLong("Enter passenger ID: ");
 
         List<Aircraft> aircraft = passengerService.getAircraftByPassenger(passengerId);
 
@@ -149,17 +145,7 @@ public class Menu {
     }
 
     private void airportsByPassenger() {
-        System.out.print("Enter passenger ID: ");
-        Long passengerId;
-
-        if (scanner.hasNextLong()) {
-            passengerId = scanner.nextLong();
-
-        } else {
-            System.out.println("Invalid ID.");
-            scanner.next();
-            return;
-        }
+        Long passengerId = readLong("Enter passenger ID: ");
 
         List<Airport> airports = passengerService.getAirportsByPassenger(passengerId);
 
@@ -174,17 +160,7 @@ public class Menu {
     }
 
     private void airportsByAircraft() {
-        System.out.print("Enter aircraft ID: ");
-        Long aircraftId;
-
-        if (scanner.hasNextLong()) {
-            aircraftId = scanner.nextLong();
-
-        } else {
-            System.out.println("Invalid ID.");
-            scanner.next();
-            return;
-        }
+        Long aircraftId = readLong("Enter aircraft ID: ");
 
         List<Airport> airports = aircraftService.getAirportsByAircraft(aircraftId);
 
