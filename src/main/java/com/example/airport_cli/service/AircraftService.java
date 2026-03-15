@@ -10,8 +10,8 @@ public class AircraftService {
 
     private final ApiClient apiClient;
 
-    public AircraftService() {
-        this.apiClient = new ApiClient();
+    public AircraftService(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public List<Airport> getAirportsByAircraft(Long aircraftId) {

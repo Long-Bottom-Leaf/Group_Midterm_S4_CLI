@@ -12,8 +12,8 @@ public class PassengerService {
 
     private final ApiClient apiClient;
 
-    public PassengerService() {
-        this.apiClient = new ApiClient();
+    public PassengerService(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public List<Passenger> getAllPassengers() {

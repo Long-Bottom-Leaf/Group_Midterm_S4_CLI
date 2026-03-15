@@ -11,8 +11,8 @@ public class CityService {
 
     private final ApiClient apiClient;
 
-    public CityService() {
-        this.apiClient = new ApiClient();
+    public CityService(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public List<City> getAllCities() {

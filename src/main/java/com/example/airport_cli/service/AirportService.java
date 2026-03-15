@@ -10,8 +10,8 @@ public class AirportService {
 
     private final ApiClient apiClient;
 
-    public AirportService() {
-        this.apiClient = new ApiClient();
+    public AirportService(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public List<Airport> getAirportsByCity(Long cityId) {
@@ -20,6 +20,7 @@ public class AirportService {
 
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving airports.");
+
             return null;
         }
     }
@@ -30,6 +31,7 @@ public class AirportService {
 
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving airports.");
+
             return null;
         }
     }
@@ -40,6 +42,7 @@ public class AirportService {
 
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving aircraft.");
+
             return null;
         }
     }
