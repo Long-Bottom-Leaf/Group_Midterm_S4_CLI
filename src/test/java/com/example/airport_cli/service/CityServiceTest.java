@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -25,7 +26,7 @@ public class CityServiceTest {
     private CityService cityService;
 
     @Test
-    void testAllCities() throws Exception {
+    public void testAllCities() throws Exception {
 
         City city = new City(2L, "St. John's", "Newfoundland", 110000);
         when(apiClient.getAllCities()).thenReturn(List.of(city));
@@ -41,7 +42,33 @@ public class CityServiceTest {
     }
 
     @Test
-    void testGetAirportsByCity() throws Exception {
+    public void testGetAllCities_nullResponse() throws Exception {
+
+        when(apiClient.getAllCities()).thenReturn(null);
+
+        List<City> result = cityService.getAllCities();
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        verify(apiClient).getAllCities();
+    }
+
+    @Test
+    public void testGetAllCities_apiException() throws Exception {
+
+        when(apiClient.getAllCities()).thenThrow(new IOException("Request failure"));
+
+        List<City> result = cityService.getAllCities();
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        verify(apiClient).getAllCities();
+    }
+
+    @Test
+    public void testGetAirportsByCity() throws Exception {
 
         City city = new City(1L, "Toronto", "Ontario", 3000000);
         Airport airport = new Airport(1L, "YYZ International", "YYZ", city);
@@ -53,6 +80,31 @@ public class CityServiceTest {
         assertEquals(1, result.size());
         assertEquals("YYZ International", result.get(0).getName());
         assertEquals("Toronto", result.get(0).getCity().getName());
+
+        verify(apiClient).getAirportsByCity(1L);
+    }
+
+    @Test
+    public void testGetAirportsByCity_invalidId() {
+
+        List<Airport> result = cityService.getAirportsByCity(0L);
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+
+        verifyNoInteractions(apiClient);
+    }
+
+    @Test
+    public void testGetAirportsByCity_apiException() throws Exception {
+
+        when(apiClient.getAirportsByCity(1L))
+                .thenThrow(new IOException("API failure"));
+
+        List<Airport> result = cityService.getAirportsByCity(1L);
+
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
 
         verify(apiClient).getAirportsByCity(1L);
     }
