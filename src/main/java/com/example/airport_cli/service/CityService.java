@@ -44,7 +44,7 @@ public class CityService {
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving airports.");
 
-            return null;
+            return Collections.emptyList();
         }
     }
 }
