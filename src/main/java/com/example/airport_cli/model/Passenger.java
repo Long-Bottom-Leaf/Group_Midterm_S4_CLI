@@ -5,10 +5,17 @@ public class Passenger {
     private Long id;
     private String firstName;
     private String lastName;
-    private String phoneNumber;
+    private int phoneNumber;
 
     // empty constructure for json objects
     public Passenger() {}
+
+    public Passenger(Long id, String firstName, String lastName, int phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
 
     // getters and setters
     public Long getId() {
@@ -35,11 +42,11 @@ public class Passenger {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

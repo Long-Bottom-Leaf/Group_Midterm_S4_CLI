@@ -26,7 +26,7 @@ public class PassengerService {
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving passengers.");
 
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -45,7 +45,7 @@ public class PassengerService {
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving aircraft.");
 
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -64,7 +64,7 @@ public class PassengerService {
         } catch (IOException | InterruptedException e) {
             System.out.println("Error retrieving airports.");
 
-            return null;
+            return Collections.emptyList();
         }
     }
 }
