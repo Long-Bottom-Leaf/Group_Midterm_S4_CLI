@@ -23,11 +23,14 @@ public class AircraftService {
         }
 
         try {
-            return apiClient.getAirportsByAircraft(aircraftId);
+            List<Airport> airports = apiClient.getAirportsByAircraft(aircraftId);
+
+            return airports != null ? airports : Collections.emptyList();
 
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving airports.");
-            return null;
+
+            return Collections.emptyList();
         }
     }
 }
