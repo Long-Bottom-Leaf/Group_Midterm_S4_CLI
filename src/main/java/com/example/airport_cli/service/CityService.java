@@ -5,6 +5,7 @@ import com.example.airport_cli.model.Airport;
 import com.example.airport_cli.model.City;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 public class CityService {
@@ -17,18 +18,28 @@ public class CityService {
 
     public List<City> getAllCities() {
         try {
-            return apiClient.getAllCities();
+            List<City> cities = apiClient.getAllCities();
+
+            return cities != null ? cities : Collections.emptyList();
 
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving cities.");
 
-            return null;
+            return Collections.emptyList();
         }
     }
 
     public List<Airport> getAirportsByCity(Long cityId) {
+        if (cityId == null || cityId <= 0) {
+            System.out.println("Invalid city ID.");
+
+            return Collections.emptyList();
+        }
+
         try {
-            return apiClient.getAirportsByCity(cityId);
+            List<Airport> airports = apiClient.getAirportsByCity(cityId);
+
+            return airports != null ? airports : Collections.emptyList();
 
         } catch (IOException | InterruptedException error) {
             System.out.println("Error retrieving airports.");
